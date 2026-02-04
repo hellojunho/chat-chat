@@ -18,6 +18,13 @@ body {
   min-height: 100vh;
 }
 
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
 .sidebar {
   background: #ffffff;
   border-right: 1px solid #e3e3e8;
@@ -34,6 +41,11 @@ body {
   padding: 10px 12px;
   font-size: 14px;
   cursor: pointer;
+}
+
+.sidebar button.active {
+  background: #3f52ff;
+  color: #ffffff;
 }
 
 .main {
@@ -91,6 +103,20 @@ body {
   gap: 12px;
 }
 
+.profile-button {
+  border: none;
+  background: transparent;
+  text-align: left;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.profile-button.selected {
+  background: #f2f4ff;
+}
+
 .profile-row > div {
   flex: 1;
 }
@@ -131,6 +157,13 @@ body {
   gap: 12px;
 }
 
+.chat-controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
 .toolbar {
   display: flex;
   justify-content: space-between;
@@ -164,4 +197,14 @@ label {
   gap: 6px;
   font-size: 12px;
   color: #555;
+}
+
+.helper-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b6b7c;
+}
+
+.helper-text.error {
+  color: #ff4d4f;
 }

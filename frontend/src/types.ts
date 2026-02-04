@@ -14,6 +14,21 @@ export interface UserProfile {
   tags: Tag[];
 }
 
+export interface UserDetail {
+  id: number;
+  email: string;
+  displayName: string;
+  username: string;
+  isStaff: boolean;
+  gender: string | null;
+  statusMessage: string;
+  token: number;
+  isActive: boolean;
+  emailChecked: boolean;
+  createdAt: string;
+  lastLoginedAt: string | null;
+}
+
 export interface ChatPreview {
   id: number;
   name: string;
@@ -25,4 +40,27 @@ export interface AlertItem {
   id: number;
   content: string;
   time: string;
+}
+
+export interface LikeStatus {
+  remaining: number;
+  windowMinutes: number;
+}
+
+export interface AdminUser {
+  id: number;
+  email: string;
+  displayName: string;
+  username: string;
+  isStaff: boolean;
+}
+
+export interface AdminUserDetail extends AdminUser {
+  gender: string | null;
+  statusMessage: string;
+  token: number;
+  isActive: boolean;
+  emailChecked: boolean;
+  createdAt: string;
+  lastLoginedAt: string | null;
 }
