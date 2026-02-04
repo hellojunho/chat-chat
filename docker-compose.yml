@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: .
+      target: backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/src:/app/backend/src
+  frontend:
+    build:
+      context: .
+      target: frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend/src:/app/frontend/src
+      - ./frontend/index.html:/app/frontend/index.html
+  mobile:
+    image: ghcr.io/cirruslabs/flutter:stable
+    working_dir: /app/mobile
+    volumes:
+      - ./mobile:/app/mobile
+    command: ["bash", "-lc", "flutter --version && tail -f /dev/null"]
