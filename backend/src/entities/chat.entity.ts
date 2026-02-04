@@ -4,20 +4,20 @@ import { User } from './user.entity';
 @Entity('chats')
 export class Chat {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @ManyToOne(() => User, (user) => user.chats)
-  user: User;
+  user!: User;
 
   @ManyToOne(() => User)
-  other_user: User;
+  other_user!: User;
 
   @Column({ type: 'text' })
-  message: string;
+  message!: string;
 
   @Column({ nullable: true })
-  file: string | null;
+  file!: string | null;
 
   @CreateDateColumn({ type: 'timestamp' })
-  sended_at: Date;
+  sended_at!: Date;
 }

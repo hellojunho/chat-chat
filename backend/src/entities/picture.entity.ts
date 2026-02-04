@@ -4,17 +4,17 @@ import { User } from './user.entity';
 @Entity('pictures')
 export class Picture {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @ManyToOne(() => User, (user) => user.pictures)
-  user: User;
+  user!: User;
 
   @Column()
-  picture: string;
+  picture!: string;
 
   @CreateDateColumn({ type: 'timestamp' })
-  registered_at: Date;
+  registered_at!: Date;
 
   @Column({ default: false })
-  is_deleted: boolean;
+  is_deleted!: boolean;
 }
