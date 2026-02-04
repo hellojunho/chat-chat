@@ -9,65 +9,65 @@ import { Alert } from './alert.entity';
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ unique: true })
-  user_id: string;
+  user_id!: string;
 
   @Column({ length: 16 })
-  password: string;
+  password!: string;
 
   @Column({ default: true })
-  email_checked: boolean;
+  email_checked!: boolean;
 
   @Column({ default: true })
-  is_active: boolean;
+  is_active!: boolean;
 
   @Column({ nullable: true })
-  gender: string | null;
+  gender!: string | null;
 
   @Column({ type: 'timestamp', nullable: true })
-  last_logined_at: Date | null;
+  last_logined_at!: Date | null;
 
   @CreateDateColumn({ type: 'timestamp' })
-  created_at: Date;
+  created_at!: Date;
 
   @Column({ type: 'int', default: 0 })
-  token: number;
+  token!: number;
 
   @Column({ length: 40, default: '' })
-  display_name: string;
+  display_name!: string;
 
   @Column({ length: 40, default: '' })
-  username: string;
+  username!: string;
 
   @Column({ default: false })
-  is_staff: boolean;
+  is_staff!: boolean;
 
   @Column({ type: 'text', default: '' })
-  status_message: string;
+  status_message!: string;
 
   @OneToMany(() => Picture, (picture) => picture.user)
-  pictures: Picture[];
+  pictures!: Picture[];
 
   @OneToMany(() => Message, (message) => message.user)
-  messages: Message[];
+  messages!: Message[];
 
   @OneToMany(() => Tag, (tag) => tag.user)
-  tags: Tag[];
+  tags!: Tag[];
 
   @OneToMany(() => Chat, (chat) => chat.user)
-  chats: Chat[];
+  chats!: Chat[];
 
   @OneToMany(() => Like, (like) => like.sender)
-  sent_likes: Like[];
+  sent_likes!: Like[];
 
   @OneToMany(() => Like, (like) => like.receiver)
-  received_likes: Like[];
+  received_likes!: Like[];
 
   @OneToMany(() => Alert, (alert) => alert.user)
-  alerts: Alert[];
+  alerts!: Alert[];
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updated_at: Date;
+  updated_at!: Date;
 }

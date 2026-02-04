@@ -10,20 +10,20 @@ export enum AlertType {
 @Entity('alerts')
 export class Alert {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @ManyToOne(() => User, (user) => user.alerts)
-  user: User;
+  user!: User;
 
   @Column({ type: 'enum', enum: AlertType })
-  type: AlertType;
+  type!: AlertType;
 
   @Column({ type: 'text' })
-  message: string;
+  message!: string;
 
   @Column({ default: false })
-  is_read: boolean;
+  is_read!: boolean;
 
   @CreateDateColumn({ type: 'timestamp' })
-  created_at: Date;
+  created_at!: Date;
 }

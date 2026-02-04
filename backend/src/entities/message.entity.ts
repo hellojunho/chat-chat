@@ -4,17 +4,17 @@ import { User } from './user.entity';
 @Entity('messages')
 export class Message {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @ManyToOne(() => User, (user) => user.messages)
-  user: User;
+  user!: User;
 
   @Column({ type: 'text' })
-  state_message: string;
+  state_message!: string;
 
   @Column({ default: false })
-  is_deleted: boolean;
+  is_deleted!: boolean;
 
   @CreateDateColumn({ type: 'timestamp' })
-  registered_at: Date;
+  registered_at!: Date;
 }
