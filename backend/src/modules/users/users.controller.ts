@@ -11,7 +11,7 @@ export class UsersController {
   }
 
   @Post('login')
-  login(@Body() payload: LoginPayload): { token: string } {
+  login(@Body() payload: LoginPayload): { token: string; isStaff: boolean } {
     return this.usersService.login(payload);
   }
 

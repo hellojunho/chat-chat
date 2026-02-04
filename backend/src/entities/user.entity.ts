@@ -38,6 +38,12 @@ export class User {
   @Column({ length: 40, default: '' })
   display_name: string;
 
+  @Column({ length: 40, default: '' })
+  username: string;
+
+  @Column({ default: false })
+  is_staff: boolean;
+
   @Column({ type: 'text', default: '' })
   status_message: string;
 

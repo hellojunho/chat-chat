@@ -25,6 +25,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const isStaff = true;
     return Scaffold(
       appBar: AppBar(
         title: const Text('CHAT-CHAT 홈'),
@@ -54,6 +55,10 @@ class HomeScreen extends StatelessWidget {
           const LikeCard(),
           const SizedBox(height: 16),
           const UserFeedCard(),
+          const SizedBox(height: 16),
+          if (isStaff) const AdminDashboardCard(),
+          if (isStaff) const SizedBox(height: 16),
+          if (isStaff) const AdminDetailCard(),
         ],
       ),
     );
@@ -102,6 +107,7 @@ class SignupCard extends StatelessWidget {
             const TextField(decoration: InputDecoration(labelText: '이메일')),
             const TextField(decoration: InputDecoration(labelText: '비밀번호 (4~16자)')),
             const TextField(decoration: InputDecoration(labelText: '이름')),
+            const TextField(decoration: InputDecoration(labelText: 'username')),
             const SizedBox(height: 12),
             ElevatedButton(onPressed: () {}, child: const Text('가입하기')),
           ],
@@ -228,6 +234,92 @@ class UserFeedCard extends StatelessWidget {
                 subtitle: Text(user['message']!),
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AdminDashboardCard extends StatelessWidget {
+  const AdminDashboardCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final users = [
+      {'username': 'admin', 'email': 'admin@admin.com'},
+      {'username': 'dogeon', 'email': 'user1@example.com'},
+      {'username': 'jimin', 'email': 'user2@example.com'},
+    ];
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text('관리자 대시보드', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text('페이지 1 / 1'),
+              ],
+            ),
+            const SizedBox(height: 12),
+            ...users.map(
+              (user) => ListTile(
+                title: TextButton(
+                  onPressed: () {},
+                  child: Text(user['username']!),
+                ),
+                subtitle: Text(user['email']!),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AdminDetailCard extends StatelessWidget {
+  const AdminDetailCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('관리자 사용자 상세', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 12),
+            const TextFormField(
+              decoration: InputDecoration(labelText: 'Display Name'),
+              initialValue: '김도건',
+            ),
+            const TextFormField(
+              decoration: InputDecoration(labelText: 'Username'),
+              initialValue: 'dogeon',
+            ),
+            const TextFormField(
+              decoration: InputDecoration(labelText: 'Gender'),
+              initialValue: 'male',
+            ),
+            const TextFormField(
+              decoration: InputDecoration(labelText: 'Status Message'),
+              initialValue: '오늘은 산책하고 싶어요.',
+            ),
+            const TextFormField(
+              decoration: InputDecoration(labelText: 'Token'),
+              initialValue: '3',
+            ),
+            const TextFormField(
+              decoration: InputDecoration(labelText: 'Active'),
+              initialValue: 'true',
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(onPressed: () {}, child: const Text('저장')),
           ],
         ),
       ),

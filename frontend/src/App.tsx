@@ -33,7 +33,60 @@ const mockAlerts: AlertItem[] = [
 
 const likeTags: Tag[] = ['스포츠', '독서', '영화시청', '산책', '여행', '주식', '재태크'];
 
+interface AdminUser {
+  id: number;
+  email: string;
+  displayName: string;
+  username: string;
+  isStaff: boolean;
+}
+
+interface AdminUserDetail extends AdminUser {
+  gender: string;
+  statusMessage: string;
+  token: number;
+  isActive: boolean;
+}
+
+const adminUsers: AdminUser[] = [
+  {
+    id: 1,
+    email: 'admin@admin.com',
+    displayName: '관리자',
+    username: 'admin',
+    isStaff: true
+  },
+  {
+    id: 2,
+    email: 'user1@example.com',
+    displayName: '김도건',
+    username: 'dogeon',
+    isStaff: false
+  },
+  {
+    id: 3,
+    email: 'user2@example.com',
+    displayName: '한지민',
+    username: 'jimin',
+    isStaff: false
+  }
+];
+
+const adminUserDetail: AdminUserDetail = {
+  id: 2,
+  email: 'user1@example.com',
+  displayName: '김도건',
+  username: 'dogeon',
+  isStaff: false,
+  gender: 'male',
+  statusMessage: '오늘은 산책하고 싶어요.',
+  token: 3,
+  isActive: true
+};
+
 export default function App(): JSX.Element {
+  const isStaff = true;
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -43,6 +96,7 @@ export default function App(): JSX.Element {
         <button type="button">채팅</button>
         <button type="button">알림</button>
         <button type="button">프로필</button>
+        {isStaff ? <button type="button">관리자</button> : null}
       </aside>
       <main className="main">
         <section className="card">
@@ -92,6 +146,7 @@ export default function App(): JSX.Element {
           <input className="input" placeholder="이메일" type="email" />
           <input className="input" placeholder="비밀번호 (4~16자)" type="password" />
           <input className="input" placeholder="이름" type="text" />
+          <input className="input" placeholder="username" type="text" />
           <button className="primary" type="button">
             가입하기
           </button>
@@ -167,6 +222,71 @@ export default function App(): JSX.Element {
             ))}
           </div>
         </section>
+
+        {isStaff ? (
+          <section className="card">
+            <div className="toolbar">
+              <h3>관리자 대시보드</h3>
+              <div>페이지 1 / 1</div>
+            </div>
+            <div className="list">
+              {adminUsers.map((user) => (
+                <div key={user.id} className="profile-row">
+                  <div>
+                    <button className="secondary" type="button">
+                      {user.username}
+                    </button>
+                    <p>{user.email}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="toolbar">
+              <button className="secondary" type="button">
+                이전
+              </button>
+              <span>1 / 1</span>
+              <button className="secondary" type="button">
+                다음
+              </button>
+            </div>
+          </section>
+        ) : null}
+
+        {isStaff ? (
+          <section className="card">
+            <h3>관리자 사용자 상세</h3>
+            <div className="list">
+              <label>
+                Display Name
+                <input className="input" defaultValue={adminUserDetail.displayName} />
+              </label>
+              <label>
+                Username
+                <input className="input" defaultValue={adminUserDetail.username} />
+              </label>
+              <label>
+                Gender
+                <input className="input" defaultValue={adminUserDetail.gender} />
+              </label>
+              <label>
+                Status Message
+                <input className="input" defaultValue={adminUserDetail.statusMessage} />
+              </label>
+              <label>
+                Token
+                <input className="input" type="number" defaultValue={adminUserDetail.token} />
+              </label>
+              <label>
+                Active
+                <input className="input" defaultValue={adminUserDetail.isActive ? 'true' : 'false'} />
+              </label>
+              <button className="primary" type="button">
+                저장
+              </button>
+            </div>
+          </section>
+        ) : null}
       </main>
     </div>
   );

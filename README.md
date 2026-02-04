@@ -10,6 +10,11 @@
 ## 빠른 실행
 각 폴더별로 의존성을 설치 후 실행하세요.
 
+### Docker
+```bash
+docker-compose up
+```
+
 ### Backend
 ```bash
 cd backend
